@@ -7,7 +7,8 @@
 }
 
 html,
-body {
+body,
+p {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -101,7 +102,144 @@ nav .nav-account button p {
     margin-right: 10px;
 }
 
+/* ------------------------------------------- END NAVBAR ------------------------------------------- */
+
+.loading-container {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loading-container img {
+    width: 120px;
+    height: 120px;
+    animation: rotateY 1.5s linear infinite;
+}
+
+.loading-container p {
+    color: var(--dark-blue);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 5px 0 0 10px;
+}
+
+@keyframes rotateY {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
 
 
+/* ------------------------------------------- END LOADER ------------------------------------ */
+
+.error-container {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: rgb(204, 0, 0) 3px solid;
+    background-color: rgba(255, 0, 0, 0.252);
+    border-radius: 10px;
+    min-height: 120px;
+    height: fit-content;
+    width: 350px;
+    padding: 8px;
+}
+
+.error-container span {
+    display: flex;
+    align-items: center;
+    color: rgb(204, 0, 0);
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.error-container p {
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+/* ------------------------------------------- END ERROR ------------------------------------ */
+
+.restaurants-page {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    height: fit-content;
+}
+
+.restaurants-page section:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+}
+
+.filter-input-container {
+    height: 80px;
+    width: 900px;
+    border: #6E8894 2px solid;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px
+}
+
+.filter-input-container div:nth-of-type(1), 
+.filter-input-container div:nth-of-type(2) {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    color: var(var(--dark-blue));
+}
+
+.filter-input {
+    height: 30px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+}
+
+.filter-input:focus {
+    outline: none;
+}
+
+.filter-input-container span {
+    display: inline;
+    background-color: var(--light-blue);
+    height: 80%;
+    width: 2px;
+    border-radius: 20px;
+}
+
+.filter-input-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 20%;
+    height: 80%;
+    background: #6E8894;
+    border: 2px solid #6E8894;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    color: var(--white);
+}
+
+.filter-input-container button p {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
 
 

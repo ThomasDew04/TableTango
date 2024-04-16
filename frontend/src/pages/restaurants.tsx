@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect, useState } from "react"
 import useRestaurants from "../api/restaurants";
 import { Restaurant } from "../interfaces";
 
-export default memo(function Home() {
+export default memo(function Restaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,13 +27,13 @@ export default memo(function Home() {
 
   return (
     <>
-      {restaurants.map((restaurant) => (
+      {/* {restaurants.map((restaurant) => (
         <div key={restaurant.id}>
           <h2>{restaurant.name}</h2>
           <p>{restaurant.cuisine}</p>
           <p>{restaurant.address}</p>
         </div>
-      ))}
+      ))} */}
     </>
   )
 }

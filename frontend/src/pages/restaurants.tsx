@@ -3,12 +3,16 @@ import useRestaurants from "../api/restaurants";
 import { Restaurant } from "../interfaces";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
+import foods from "../data/foodsData";
 import { IoSearchOutline } from "react-icons/io5";
+import FoodChoice from "../components/diverse/FoodChoice";
+import { FaList } from "react-icons/fa";
 
 export default memo(function Restaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const { getAll } = useRestaurants();
 
   const refreshRestaurants = useCallback(async () => {
@@ -27,6 +31,10 @@ export default memo(function Restaurants() {
   useEffect(() => {
     refreshRestaurants();
   }, []);
+
+  const handleFoodChoiceClick = (index: number) => {
+    setActiveIndex(index === activeIndex ? null : index);
+  };
 
   return (
     <div className="restaurants-page">
@@ -49,6 +57,20 @@ export default memo(function Restaurants() {
           </button>
         </div>
       </section>
+      <section>
+        <div className="filter-foods-container center">
+          {foods.map((food, index) => (
+            <FoodChoice key={index} 
+            data={food} 
+            isActive={index === activeIndex}
+            onClick={() => handleFoodChoiceClick(index)}/>
+          ))}
+          <button className="gen-filter-btn">
+            <FaList size={20} />
+            <p>Filter</p>
+          </button>
+        </div>
+      </section>
 
        {/* {restaurants.map((restaurant) => (
         <div key={restaurant.id}>
@@ -57,7 +79,7 @@ export default memo(function Restaurants() {
           <p>{restaurant.address}</p>
         </div>
       ))} */}
-      
+
     </div>
   )
 }

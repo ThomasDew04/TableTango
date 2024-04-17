@@ -242,4 +242,59 @@ nav .nav-account button p {
     font-weight: 700;
 }
 
+.restaurants-page section:nth-child(2) {
+    height: 90px;
+}
+
+.filter-foods-container {
+    gap: 30px;
+}
+
+.foodchoice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.food-active p {
+    color: var(--dark-blue) !important;
+    text-decoration: underline var(--dark-blue) 2px !important;
+    text-underline-offset: 5px;
+}
+
+.foodchoice img {
+    width: 60px;
+    height: 60px;
+}
+
+.foodchoice p {
+    color: var(--light-blue);
+    font-weight: 600;
+}
+
+.gen-filter-btn {
+    border: none;
+    background-color: transparent;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 120px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--light-blue);
+}
+
+.gen-filter-btn p {
+    color: var(--light-blue);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.gen-filter-btn:hover {
+    border: 1px solid var(--light-blue);
+}
 

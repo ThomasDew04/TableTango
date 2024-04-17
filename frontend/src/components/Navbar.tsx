@@ -8,9 +8,9 @@ export default memo(function Home() {
 
     return (
         <nav>
-            <div className="nav-logo center">
+            <Link to="/" className="nav-logo center">
                 <img src={logo_small} alt="logo" /><p>TableTango</p>
-            </div>
+            </Link>
             <div className="nav-links">
                 <Link to="restaurants" className={pathname.includes("restaurants") ? "active" : ""} >Restaurants</Link>
                 <Link to="reservations" className={pathname.includes("reservations") ? "active" : ""} >Reservations</Link>

@@ -7,6 +7,7 @@ import foods from "../data/foodsData";
 import { IoSearchOutline } from "react-icons/io5";
 import FoodChoice from "../components/diverse/FoodChoice";
 import { FaList } from "react-icons/fa";
+import RestaurantCard from "../components/diverse/RestaurantCard";
 
 export default memo(function Restaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -71,15 +72,13 @@ export default memo(function Restaurants() {
           </button>
         </div>
       </section>
-
-       {/* {restaurants.map((restaurant) => (
-        <div key={restaurant.id}>
-          <h2>{restaurant.name}</h2>
-          <p>{restaurant.cuisine}</p>
-          <p>{restaurant.address}</p>
+      <section>
+        <div className="restaurants-cards-container">
+          {restaurants.map((restaurant) => (
+            <RestaurantCard key={restaurant.ID} restaurant={restaurant} />
+          ))}
         </div>
-      ))} */}
-
+      </section>
     </div>
   )
 }

@@ -298,3 +298,56 @@ nav .nav-account button p {
     border: 1px solid var(--light-blue);
 }
 
+.restaurant-card {
+    width: 310px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-card img {
+    width: 310px;
+    height: 60%;
+    border-radius: 15px; 
+    object-fit: cover;
+}
+
+.restaurant-card-info {
+    height: 40%;
+}
+
+.restaurant-card-info h1 {
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+    margin: 5px 0 0 0;
+}
+
+.restaurant-card-info span {
+    color: var(--light-blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.restaurant-card-info span p {
+    color: var(--light-blue);
+    font-weight: 650;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.restaurants-page section:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurants-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    width: 90%;
+    height: fit-content;
+    margin: 20px 0 0 40px;
+}

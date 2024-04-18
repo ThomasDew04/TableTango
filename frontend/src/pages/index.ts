@@ -2,5 +2,16 @@ import Restaurants from "./restaurants";
 import Restaurant from "./restaurant_detail";
 import Reservations from "./reservations";
 import Favorites from "./favorites";
+import Login from "./login";
+import Register from "./register";
+import Account from "./account";
 
-export { Restaurants, Restaurant, Reservations, Favorites}
+export { 
+    Restaurants, 
+    Restaurant, 
+    Reservations, 
+    Favorites,
+    Login,
+    Register,
+    Account
+}

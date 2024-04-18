@@ -1,6 +1,6 @@
 import { MdErrorOutline } from "react-icons/md";
 
-export default function Error({ error } : { error: Error | null}) {
+export default function Error({ error } : { error:  null | string}) {
     if (error) {
       return (
         <div className="error-container">
@@ -8,10 +8,9 @@ export default function Error({ error } : { error: Error | null}) {
                 <MdErrorOutline size={35}/>
                 <h2>An error occured:</h2>
             </span>
-            <p>{error.message}</p>
+            <p>{error}</p>
         </div>
       );
     }
-  
     return null;
-  }
+}

@@ -11,7 +11,7 @@ import RestaurantCard from "../components/diverse/RestaurantCard";
 
 export default memo(function Restaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<null | string>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const { getAll } = useRestaurants();
@@ -23,7 +23,7 @@ export default memo(function Restaurants() {
       const data = await getAll();
       setRestaurants(data);
     } catch (error: any) {
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,6 @@ export default memo(function Restaurants() {
   return (
     <div className="restaurants-page">
       <Loader loading={loading} />
-      <Error error={error} />
       <Error error={error} />
       <section>
         <div className="filter-input-container">

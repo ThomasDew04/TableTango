@@ -8,3 +8,10 @@ export interface Restaurant {
     description: string;
     images: string;
 }
+
+export interface User {
+    ID?: number;
+    name: string;
+    email: string;
+    password: string;
+}

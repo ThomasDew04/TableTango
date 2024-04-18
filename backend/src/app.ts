@@ -4,6 +4,7 @@ import createHttpError, { isHttpError } from "http-errors";
 import cors from "cors";
 import morgan from "morgan";
 import restaurantRoutes from "./routes/restaurants";
+import userRoutes from "./routes/users";
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,8 @@ console.log('📜 Logger initialized');
 
 // Routes
 app.use("/api/restaurants", restaurantRoutes);
+app.use("/api/users", userRoutes);
+
 
 app.get("/favicon.ico", (req, res) => {
     // Serve a custom favicon or an empty response

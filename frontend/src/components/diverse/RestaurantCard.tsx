@@ -22,7 +22,16 @@ const RestaurantCard = ({ restaurant }: Data ) => {
                 <h1>{restaurant.name}</h1>
                 <span><FaLocationDot size={25} /><p>{restaurant.address}</p></span>
                 <span><PiForkKnifeFill size={25} /><p>{restaurant.cuisine}</p></span>
-                <span><RiCoinsFill size={25} /><p>{restaurant.pricerange}</p></span>
+                <span><RiCoinsFill size={25} />
+                    <p>
+                    {[...Array(restaurant.pricerange)].map((_, index) => (
+                        <div key={index} className="filled-ball" />
+                    ))}
+                    {[...Array(5 - restaurant.pricerange)].map((_, index) => (
+                        <div key={index} className="empty-ball" />
+                    ))}
+                    </p>
+                </span>
             </div>
         </Link>
     );

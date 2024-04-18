@@ -28,6 +28,11 @@ a {
     align-items: center;
 }
 
+.main-container {
+    max-width: 100vw;
+    margin: 0 120px 0 120px;
+}
+
 nav {
     height: 120px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -83,7 +88,7 @@ nav .nav-account {
     align-items: center;
 }
 
-nav .nav-account button {
+.nav-account-button {
     display: flex;
     align-items: center;
     border: 2px solid #182B32;
@@ -93,13 +98,25 @@ nav .nav-account button {
     height: 65px;
     background-color: transparent;
     padding: 0 20px 0 20px;
+    color: var(--dark-blue);
 }
 
-nav .nav-account button p {
+.nav-account-button p {
     color: var(--dark-blue);
     font-size: 1.5rem;
     font-weight: 700;
     margin-right: 10px;
+}
+
+.nav-account-login {
+    gap: 10px;
+    color: var(--white);
+    background: linear-gradient(90deg, #6E8894 0%, #005E8A 100%);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 15px;
+    height: 65px;
+    width: 150px;
 }
 
 /* ------------------------------------------- END NAVBAR ------------------------------------------- */
@@ -331,10 +348,27 @@ nav .nav-account button p {
 }
 
 .restaurant-card-info span p {
+    display: flex;
+    gap: 3px;
     color: var(--light-blue);
     font-weight: 650;
     font-size: 1rem;
     margin: 0;
+}
+
+.filled-ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--light-blue);
+    background-color: var(--light-blue);
+}
+
+.empty-ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: solid 1px var(--light-blue);
 }
 
 .restaurants-page section:nth-child(3) {
@@ -350,4 +384,146 @@ nav .nav-account button p {
     width: 90%;
     height: fit-content;
     margin: 20px 0 0 40px;
+}
+
+/* -------------------------------END OF RESTAURANTS PAGE ------------------------------------------*/
+
+.breadcrumb {
+    margin: 30px 120px 40px 120px;
+}
+
+.breadcrumb h1 {
+    color: var(--dark-blue);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.breadcrumb span {
+    display: block;
+    background-color: var(--light-blue);
+    width: 100%;
+    height: 1px;
+    margin: 5px 0 0 0;
+}
+
+.bc-det {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+/* --------------------------------- END OF BREADCRUMB ---------------------------------*/
+
+.login-form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.login-form div:nth-child(1), 
+.login-form div:nth-child(2), 
+.login-form div:nth-child(3){
+    border: var(--light-blue) 1px solid;
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    width: 420px;
+    border-radius: 10px;
+}
+
+.login-form div:nth-child(1) label, 
+.login-form div:nth-child(2) label, 
+.login-form div:nth-child(3) label{
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    margin: 10px 0 0 15px;
+}
+
+.login-form div:nth-child(1) input, .login-form div:nth-child(2) input {
+    height: 32px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    margin: 3px 0 0 15px;
+    padding: 3px 3px 3px 0px;
+}
+
+.login-form div:nth-child(1) input:focus,
+.login-form div:nth-child(2) input:focus {
+    outline: none;
+}
+
+.pw-input {
+    flex-direction: row !important;
+    border: none !important
+}
+
+.pw-input input {
+    width: 85%;
+    height: 32px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0px 0 0 15px;
+    padding: 3px 3px 3px 0px;
+    border: none;
+}
+
+.pw-input input:focus {
+    outline: none;
+}
+
+.pw-input button {
+    color: var(--light-blue);
+    width: 15%;
+    height: 32px;
+    margin: 3px 3px 0 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.login-btn {
+    background: linear-gradient(90deg, #6E8894 0%, #005E8A 100%);
+    border-radius: 10px;
+    height: 80px;
+    width: 420px;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.no-account {
+    width: 420px;
+    margin: 10px 0 0 0;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.no-account a {
+    color: var(--dark-blue);
+    text-decoration: underline var(--dark-blue) 1px;
+    font-weight: 600;
+    margin: 0 0 0 10px;
+}
+
+/* ----------------------------------- END OF LOGIN PAGE ---------------------------------------*/
+
+.fav-btn {
+    background: linear-gradient(90deg, #6E8894 0%, #005E8A 100%);
+    border: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 3px 0 3px 0;
+    width: 220px;
 }

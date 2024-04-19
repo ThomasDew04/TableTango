@@ -5,8 +5,6 @@ import { BiLogIn } from "react-icons/bi";
 
 export default function AuthButton() {
     const { isAuthenticated, user } = useAuth();
-    console.log(user);
-    console.log(isAuthenticated);
 
     if (!isAuthenticated) {
         return (

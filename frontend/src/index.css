@@ -347,7 +347,7 @@ nav .nav-account {
     margin-top: 5px;
 }
 
-.restaurant-card-info span p {
+.restaurant-card-info span span {
     display: flex;
     gap: 3px;
     color: var(--light-blue);
@@ -430,6 +430,7 @@ nav .nav-account {
     width: 420px;
     border-radius: 10px;
 }
+
 
 .login-form div:nth-child(1) label, 
 .login-form div:nth-child(2) label, 
@@ -526,4 +527,491 @@ nav .nav-account {
     border-radius: 10px;
     padding: 3px 0 3px 0;
     width: 220px;
+    margin-bottom: 5px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--light-blue);
+    margin: 20px 0 0 120px;
+}
+
+.back-btn:hover {
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+
+.back-btn p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: underline var(--light-blue) 2px;
+}
+
+.back-btn:hover p {
+    text-decoration: underline var(--dark-blue) 2px;
+}
+
+.restaurant-details {
+    margin: 0 120px 0px 120px;
+    height: fit-content;
+    display: flex;
+    padding: 0 0 50px 0;
+}
+
+.left-details {
+    margin: 0 0 0 20px;
+    width: 62%;
+}
+
+.right-details {
+    margin: 0 0px 0 40px;
+    width: 38%;
+}
+
+.image-det-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.image-det-container img:nth-child(1) {
+    width: 380px;
+    height: 330px;
+    border-radius: 15px 0 0 15px;
+    object-fit: fill;
+}
+
+.right-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right-images img:nth-child(1) {
+    width: 330px;
+    height: 155px;
+    border-radius: 0 15px 0 0;
+    object-fit: fill;
+}
+
+.right-images img:nth-child(2) {
+    width: 330px;
+    height: 155px;
+    border-radius: 0 0 15px 0;
+    object-fit: fill;
+}
+
+.det-divider {
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--light-blue);
+    margin: 30px 0 15px 0;
+}
+
+.info-bot {
+    display: grid;;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    margin-top: 20px;
+}
+  
+.info-bot-item {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    color: var(--light-blue);
+    gap: 15px;
+    font-size: 1.3rem;
+    font-weight: 650;
+}   
+
+.pricerange-dots {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 650;
+}
+
+.reservation-form {
+    width: 85%;
+    height: fit-content;
+    padding: 30px 0;
+    border: var(--dark-blue) 1px solid;
+    border-radius: 15px;
+}
+
+.inner-form {
+    height: 90%;
+    width: 80%;
+}
+
+.inner-form h2 {
+    color: var(--dark-blue);
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+}
+
+.first-res-box {
+    border: var(--light-blue) 1px solid;
+    border-radius: 15px;
+    height: 160px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 22px 0;
+}
+
+.top-res-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50%;
+}
+
+.first-res-i {
+    width: 50%;
+    height: 100%;
+    border: var(--light-blue) 1px solid;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.second-res-i {
+    width: 50%;
+    height: 100%;
+}
+
+.first-res-i, .second-res-i, .bottom-res-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-res-row {
+    height: 50%;
+    border: var(--light-blue) 1px solid;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.second-res-box {
+    border: var(--light-blue) 1px solid;
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 0 22px 0;
+}
+
+.reservate-btn {
+    background: linear-gradient(90deg, #6E8894 0%, #005E8A 100%);
+    border-radius: 10px;
+    height: 80px;
+    width: 100%;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: ease-in-out 0.1s;
+}
+
+.reservate-btn:hover {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.inner-form label {
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    margin: 10px 0 0 15px;
+}
+
+.inner-form input {
+    height: 32px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    margin: 3px 0 0 15px;
+    padding: 3px 3px 3px 0px;
+}
+
+.inner-form input:focus {
+    outline: none;
+}
+
+.inner-form select {
+    height: 32px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    margin: 3px 15px 0 15px;
+    padding: 3px 3px 3px 0px;
+    background: transparent;
+}
+
+/* ----------------------------------- END OF RESTAURANT DETAILS PAGE ------------------------------------ */
+
+.logout-btn {
+    background: linear-gradient(90deg, #c78c7a 0%, #d6530c 100%);
+    border-radius: 10px;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 3px 10px 3px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: ease-in-out 0.1s;
+}
+
+.logout-btn:hover {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.left-account {
+    width: 40%;
+}
+
+.right-account {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 60%;
+    padding: 0 40px 0 0;
+}
+
+.account-card {
+    border: solid 1px var(--light-blue);
+    border-radius: 15px;
+    height: 525px;
+    width: 350px;
+    margin: 0 0 0 40px;
+    padding: 30px 60px;
+}
+
+.account-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: var(--light-blue);
+    object-fit: cover;
+}
+
+.acc-img-container {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130px;
+    height: 130px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+
+.acc-img-container:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.account-card h2 {
+    margin: 30px 0 0 0;
+    color: var(--dark-blue);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.dark-divider {
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--dark-blue);
+}
+
+.light-divider {
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--light-blue);
+}
+
+.account-card p {
+    color: var(--light-blue);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 15px 0 15px 0;
+}
+
+.account-modal {
+    z-index: 100;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 150px;
+    border: var(--light-blue) 2px solid;
+    border-radius: 15px;
+    background-color: var(--white);
+    padding: 20px;
+}
+
+.account-modal h2 {
+    color: var(--dark-blue);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+.account-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-modal form span {
+    display: flex;
+    gap: 15px;
+}
+
+.account-modal form input {
+    height: 32px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 3px 5px;
+    border: solid 1px var(--light-blue);
+    border-radius: 8px;
+}
+
+.account-modal form input:focus {
+    outline: none;
+}
+
+.account-modal form button:nth-of-type(2) {
+    background: linear-gradient(90deg, #6E8894 0%, #005E8A 100%);
+    border-radius: 10px;
+    border: none;
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 650;
+    cursor: pointer;
+    padding: 3px 20px 3px 20px;
+    transition: ease-in-out 0.1s;
+    width: 120px;
+    text-align: center;
+}
+
+.account-modal form button:nth-of-type(1) {
+    background: linear-gradient(90deg, #c78c7a 0%, #d6530c 100%);
+    border-radius: 10px;
+    border: none;
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 650;
+    cursor: pointer;
+    padding: 3px 20px 3px 20px;
+    transition: ease-in-out 0.1s;
+    width: 120px;
+    text-align: center;
+}
+
+.account-modal form button:hover {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.personal-info {
+    width: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--light-blue);
+    border-radius: 15px;
+    color: var(--dark-blue);
+    padding: 20px;
+}
+
+.right-account div:nth-child(3) {
+    margin: 30px 0 0 0;
+}
+
+.personal-info h2 {
+    margin: 0;
+}
+
+.additional-info {
+    overflow: hidden;
+    width: 650px;
+    max-height: 0;
+    transition: max-height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0 20px 0 20px;
+}
+
+.additional-info.visible {
+    max-height: calc(90px * 3 + 20px * 3);
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px var(--light-blue);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    height: 85px;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
+.info-row h3 {
+    margin: 0;
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.info-label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-label button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline var(--light-blue) 2px;
+    font-size: 1.2rem;
+    color: var(--light-blue);
+    transition: ease-in-out 0.3s;
+}
+
+.info-label button:hover {
+    text-decoration: underline var(--dark-blue) 2px;
+    color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.info-row p {
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 15px 0 0 0;
 }

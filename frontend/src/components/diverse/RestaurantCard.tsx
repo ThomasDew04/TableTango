@@ -23,14 +23,14 @@ const RestaurantCard = ({ restaurant }: Data ) => {
                 <span><FaLocationDot size={25} /><p>{restaurant.address}</p></span>
                 <span><PiForkKnifeFill size={25} /><p>{restaurant.cuisine}</p></span>
                 <span><RiCoinsFill size={25} />
-                    <p>
+                    <span>
                     {[...Array(restaurant.pricerange)].map((_, index) => (
-                        <div key={index} className="filled-ball" />
+                        <p key={index} className="filled-ball" />
                     ))}
                     {[...Array(5 - restaurant.pricerange)].map((_, index) => (
-                        <div key={index} className="empty-ball" />
+                        <p key={index} className="empty-ball" />
                     ))}
-                    </p>
+                    </span>
                 </span>
             </div>
         </Link>

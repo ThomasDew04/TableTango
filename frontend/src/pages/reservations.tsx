@@ -1,10 +1,11 @@
 import { memo } from "react";
+import BreadCrumb from "../components/diverse/BreadCrumb";
 
 export default memo(function Reservations() {
     
     return (
         <div>
-            <h1>Reservations</h1>
+            <BreadCrumb page="Reservations"/>
         </div>
     );
 });

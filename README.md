@@ -21,4 +21,13 @@ Bachelorproef TI-2024
 ### 18/04/2024
 - Frontend login & register page
 - Frontend authentication + usermanagement
+- Frontend restaurant page (1/2)
 - Backend user routes
+
+### 19/04/2024
+- Frontend restaurant page (2/2)
+- Frontend account page
+- Frontend account modal component
+
+### 20/04/2024
+- TODO: van account modal naar auth provider nieuwe use data doorgeven voor user update

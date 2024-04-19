@@ -75,9 +75,18 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         const { id } = req.params;
         const user = req.body;
 
+        const updatedFields: string[] = [];
+
+        if (user.name) updatedFields.push(`name = '${user.name}'`);
+        if (user.password) updatedFields.push(`password = '${user.password}'`);
+        if (user.email) updatedFields.push(`email = '${user.email}'`);
+        if (user.image) updatedFields.push(`image = '${user.image}'`);
+
+        const setClause = updatedFields.join(', ');
+
         const result = await request.query<User>(`
             UPDATE Users
-            SET name = '${user.name}', email = '${user.email},password = '${user.password}'
+            SET ${setClause}
             OUTPUT INSERTED.*
             WHERE id = ${id}
         `);

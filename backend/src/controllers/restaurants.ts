@@ -61,7 +61,7 @@ export const updateRestaurant = async (req: Request, res: Response): Promise<voi
         const connection = req.app.locals.db;
         const request = new sql.Request(connection);
         const { id } = req.params;
-        const { name, cuisine, address, pricerange, openinghours, description } = req.body;
+        const { name, cuisine, address, pricerange, openinghours, description, images } = req.body;
         const updatedFields: string[] = [];
 
         if (name) updatedFields.push(`name = '${name}'`);
@@ -70,6 +70,7 @@ export const updateRestaurant = async (req: Request, res: Response): Promise<voi
         if (pricerange) updatedFields.push(`pricerange = ${pricerange}`);
         if (openinghours) updatedFields.push(`openinghours = '${openinghours}'`);
         if (description) updatedFields.push(`description = '${description}'`);
+        if (images) updatedFields.push(`images = '${images}'`);
 
         const setClause = updatedFields.join(', ');
 

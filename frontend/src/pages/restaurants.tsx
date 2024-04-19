@@ -13,7 +13,7 @@ export default memo(function Restaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [error, setError] = useState<null | string>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeFood, setActiveFood] = useState<string | null>(null);  
   const { getAll } = useRestaurants();
 
   const refreshRestaurants = useCallback(async () => {
@@ -33,8 +33,13 @@ export default memo(function Restaurants() {
     refreshRestaurants();
   }, []);
 
-  const handleFoodChoiceClick = (index: number) => {
-    setActiveIndex(index === activeIndex ? null : index);
+  const filterRestaurants = () => {
+    if (activeFood === null) return restaurants;
+
+    let filteredRestaurants = restaurants.filter((restaurant) => 
+      restaurant.cuisine.toLowerCase() === activeFood.toLocaleLowerCase());
+  
+    return filteredRestaurants;
   };
 
   return (
@@ -44,8 +49,8 @@ export default memo(function Restaurants() {
       <section>
         <div className="filter-input-container">
           <div>
-            <label>Name</label>
-            <input type="text" className="filter-input" placeholder="Mr. Sato"/>
+            <label>Place</label>
+            <input type="text" className="filter-input" placeholder="Ghent"/>
           </div>
           <span />
           <div>
@@ -60,10 +65,12 @@ export default memo(function Restaurants() {
       <section>
         <div className="filter-foods-container center">
           {foods.map((food, index) => (
-            <FoodChoice key={index} 
-            data={food} 
-            isActive={index === activeIndex}
-            onClick={() => handleFoodChoiceClick(index)}/>
+            <FoodChoice
+              key={index}
+              data={food}
+              isActive={food.footnote.split(' ')[0] === activeFood}
+              onClick={() => setActiveFood(food.footnote.split(' ')[0])}
+            />
           ))}
           <button className="gen-filter-btn">
             <FaList size={20} />
@@ -73,7 +80,7 @@ export default memo(function Restaurants() {
       </section>
       <section>
         <div className="restaurants-cards-container">
-          {restaurants.map((restaurant) => (
+          {filterRestaurants().map((restaurant) => (
             <RestaurantCard key={restaurant.ID} restaurant={restaurant} />
           ))}
         </div>

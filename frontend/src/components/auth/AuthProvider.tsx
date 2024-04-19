@@ -48,17 +48,26 @@ export const AuthProvider = ({ children }: Props ) => {
     // Only re-run this effect when isAuthenticated, navigate, or location.pathname changes
       
     const login = (userData: User) => {
-        setUser(userData);
-        setIsAuthenticated(true);
-        navigate('/account');
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      setIsAuthenticated(true);
+      localStorage.setItem('isAuthenticated', 'true'); // Update isAuthenticated in localStorage
+      navigate('/account');
     };
     
     const logout = () => {
-        setUser(null);
-        setIsAuthenticated(false);
-        localStorage.removeItem('isAuthenticated');
+      setUser(null);
+      setIsAuthenticated(false);
+      localStorage.removeItem('user');
+      localStorage.removeItem('isAuthenticated');
     };
 
+    useEffect(() => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+          setUser(JSON.parse(storedUser));
+      }
+  }, []);
 
     return (
       <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>

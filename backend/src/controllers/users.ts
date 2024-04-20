@@ -105,6 +105,13 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
 
         const { id } = req.params;
 
+        // Delete the user's favorites first
+        await request.query(`
+        DELETE FROM Favorites
+        WHERE user_id = ${id}
+        `);
+
+        // Delete the user
         await request.query<User>(`
             DELETE FROM Users
             OUTPUT DELETED.*

@@ -16,3 +16,8 @@ export interface User {
     password: string;
     image?: string;
 }
+
+export interface Favorite {
+    user_id: number;
+    restaurant_id: number;
+}

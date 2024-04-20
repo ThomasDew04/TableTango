@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import restaurantRoutes from "./routes/restaurants";
 import userRoutes from "./routes/users";
+import favoriteRoutes from "./routes/favorites";
 
 const app = express();
 app.use(cors());
@@ -15,7 +16,7 @@ console.log('📜 Logger initialized');
 // Routes
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/users", userRoutes);
-
+app.use("/api/favorites", favoriteRoutes);
 
 app.get("/favicon.ico", (req, res) => {
     // Serve a custom favicon or an empty response

@@ -1024,3 +1024,49 @@ nav .nav-account {
     font-weight: 600;
     margin: 15px 0 0 0;
 }
+
+/* ----------------------------------- END OF ACCOUNT PAGE ------------------------------------ */
+
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    max-width: 100%;
+    height: fit-content;
+    margin: 30px 94px 40px 94px;
+}
+
+/* For bigger screens */
+@media screen and (min-width: 1600px) {
+    .favorites-container {
+        width: 100%;
+        margin: 30px 120px 40px 120px;
+    }
+}
+
+.fav-card {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.fav-card button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--dark-blue);
+    background-color: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+
+.fav-card button:hover {
+    cursor: pointer;
+    color: var(--light-blue);
+}

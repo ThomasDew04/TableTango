@@ -37,7 +37,16 @@ const useUsers = () => {
     }
   }, []);
 
-  return { getAll, getByName , create };
+  const update = useCallback(async (user: User): Promise<User> => {
+    try {
+        const { data } = await axios.put(`${baseURL}/api/users/${user.ID}`, user);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+  }, []);
+
+  return { getAll, getByName , create, update };
 };
 
 export default useUsers;

@@ -275,6 +275,14 @@ nav .nav-account {
     gap: 8px;
 }
 
+.foodchoice:hover {
+    cursor: pointer;
+}
+
+.foodchoice:hover p {
+    color: var(--dark-blue) !important;
+}
+
 .food-active p {
     color: var(--dark-blue) !important;
     text-decoration: underline var(--dark-blue) 2px !important;
@@ -998,6 +1006,7 @@ nav .nav-account {
     background-color: transparent;
     border: none;
     text-decoration: underline var(--light-blue) 2px;
+    text-underline-offset: 3px;
     font-size: 1.2rem;
     color: var(--light-blue);
     transition: ease-in-out 0.3s;

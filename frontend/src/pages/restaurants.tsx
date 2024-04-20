@@ -14,6 +14,7 @@ export default memo(function Restaurants() {
   const [error, setError] = useState<null | string>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeFood, setActiveFood] = useState<string | null>(null);  
+  const [placeFilter, setPlaceFilter] = useState<string | null>(null);
   const { getAll } = useRestaurants();
 
   const refreshRestaurants = useCallback(async () => {
@@ -34,11 +35,21 @@ export default memo(function Restaurants() {
   }, []);
 
   const filterRestaurants = () => {
-    if (activeFood === null) return restaurants;
+    if (activeFood === null && !placeFilter) return restaurants;
 
-    let filteredRestaurants = restaurants.filter((restaurant) => 
-      restaurant.cuisine.toLowerCase() === activeFood.toLocaleLowerCase());
-  
+    // Filter by type of food
+    let filteredRestaurants = restaurants;
+    if (activeFood !== null) {
+        filteredRestaurants = restaurants.filter((restaurant) => 
+        restaurant.cuisine.toLowerCase() === activeFood.toLocaleLowerCase());
+    }
+    
+    // Filter by place
+    if (placeFilter !== null && placeFilter.trim() !== '') {
+      filteredRestaurants = filteredRestaurants.filter((restaurant) => 
+        restaurant.address.toLowerCase().includes(placeFilter.toLocaleLowerCase()));
+    }
+    
     return filteredRestaurants;
   };
 
@@ -50,7 +61,11 @@ export default memo(function Restaurants() {
         <div className="filter-input-container">
           <div>
             <label>Place</label>
-            <input type="text" className="filter-input" placeholder="Ghent"/>
+            <input type="text" 
+              className="filter-input" 
+              placeholder="Ghent"
+              onChange={(e) => setPlaceFilter(e.target.value)} 
+              />
           </div>
           <span />
           <div>

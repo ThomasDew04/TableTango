@@ -58,7 +58,7 @@ export default memo(function Account() {
                 <span />
             </div>
             <div className="restaurant-details">
-                {modalOpen && <AccountModal id={user?.ID!} {...modalProps} onCancel={closeModal} />}
+                {modalOpen && <AccountModal {...modalProps} onCancel={closeModal} />}
                 <div className="left-account">
                     <div className="account-card">
                         <span className="acc-img-container">
@@ -86,7 +86,7 @@ export default memo(function Account() {
                         <InfoRow
                             label="Username"
                             value={user?.name!}
-                            onClickEdit={() => toggleModal('username', 'text', user?.name)}
+                            onClickEdit={() => toggleModal('name', 'text', user?.name)}
                         />
                         <InfoRow
                             label="Password"

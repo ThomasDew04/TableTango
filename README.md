@@ -30,4 +30,5 @@ Bachelorproef TI-2024
 - Frontend account modal component
 
 ### 20/04/2024
-- TODO: van account modal naar auth provider nieuwe use data doorgeven voor user update
+- Frontend update user info (account -> modal -> auth)
+- Frontend filter restaurants by place

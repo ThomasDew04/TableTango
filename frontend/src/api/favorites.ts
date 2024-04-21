@@ -18,6 +18,16 @@ const useFavorites = () => {
         }
     }, []);
 
+    const addFavorite = useCallback(async (favorite: Favorite): Promise<Favorite> => {
+        try {
+            const { data } = await axios.post(`${baseURL}/api/favorites`, favorite);
+            return data;
+        } catch (error) {
+            console.error("Error adding favorite:", error);
+            throw error;
+        }
+    }, []);
+
     const deleteFavorite = useCallback(async (user_id: number, restaurant_id: number): Promise<void> => {
         try {
             await axios.delete(`${baseURL}/api/favorites/${user_id}/${restaurant_id}`);
@@ -27,7 +37,7 @@ const useFavorites = () => {
         }
     }, []);
 
-    return { getFavorites, deleteFavorite };
+    return { getFavorites, addFavorite ,deleteFavorite };
 };
 
 export default useFavorites;

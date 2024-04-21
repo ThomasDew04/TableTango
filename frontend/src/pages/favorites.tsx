@@ -6,7 +6,6 @@ import Error from "../components/Error";
 import { Restaurant } from "../interfaces";
 import RestaurantCard from "../components/diverse/RestaurantCard";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 export default memo(function Favorites() {
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);

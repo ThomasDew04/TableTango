@@ -12,7 +12,7 @@ Bachelorproef TI-2024
 ### 15/04/2024 - 16/04/2024
 - Set up project structure
 - Connection to database
-- Backend restaurant routes
+- Backend restaurant routes, models & controllers
 
 ### 17/04/2024
 - Frontend Navbar
@@ -22,7 +22,7 @@ Bachelorproef TI-2024
 - Frontend login & register page
 - Frontend authentication + usermanagement
 - Frontend restaurant page (1/2)
-- Backend user routes
+- Backend user routes, models & controllers
 
 ### 19/04/2024
 - Frontend restaurant page (2/2)
@@ -32,3 +32,9 @@ Bachelorproef TI-2024
 ### 20/04/2024
 - Frontend update user info (account -> modal -> auth)
 - Frontend filter restaurants by place
+- Frontend favorite page
+- Frontend remove favorite functionality
+- Backend favorite routes, models & controllers
+
+### 21/04/2024
+- Frontend add & remove favorite functionality in detail page

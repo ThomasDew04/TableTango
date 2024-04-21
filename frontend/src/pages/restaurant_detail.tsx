@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import useRestaurants from "../api/restaurants";
 import { useParams } from "react-router";
-import { Restaurant } from "../interfaces";
+import { Favorite, Restaurant } from "../interfaces";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
 import { LuMoveLeft } from "react-icons/lu";
@@ -10,6 +10,9 @@ import { PiForkKnifeFill } from "react-icons/pi";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiCoinsFill } from "react-icons/ri";
 import { BsFillClockFill } from "react-icons/bs";
+import useFavorites from "../api/favorites";
+import { useAuth } from "../components/auth/AuthProvider";
+import { FaHeartBroken, FaRegHeart } from "react-icons/fa";
 
 function BackButton({}) {
     return (
@@ -21,28 +24,74 @@ function BackButton({}) {
 
 export default memo(function Restaurant() {
     const [restaurant, setRestaurant] = useState<Restaurant>();
+    const [favorites, setFavorites] = useState<Restaurant[]>([]);
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const { getById } = useRestaurants();
+    const { addFavorite, getFavorites, deleteFavorite } = useFavorites();
+    const { user } = useAuth();
     const { id } = useParams();
 
-
-    const refreshRestaurant = useCallback(async () => {
-        try {
+    const addFav = async () => {
+      const favorite: Favorite = {
+          user_id: user?.ID!,
+          restaurant_id: restaurant?.ID!,
+      }
+      try {
           setLoading(true);
           setError(null);
-          const data = await getById(id!);
-          setRestaurant(data);
-        } catch (error: any) {
+          await addFavorite(favorite);
+          refreshUserFavorites();
+      } catch (error: any) {
           setError(error.message);
-        } finally {
+      } finally {
           setLoading(false);
-        }
-      }, [getById, id]);
+      }
+    };
+
+    const removeFav = async () => {
+      try {
+          setLoading(true);
+          setError(null);
+          await deleteFavorite(user?.ID!, restaurant?.ID!);
+          setFavorites((favorites) => favorites.filter((restaurant) => restaurant.ID !== restaurant?.ID));
+      } catch (error: any) {
+          setError(error.message);
+      } finally {
+          setLoading(false);
+      }
+    };
+
+    const refreshRestaurant = useCallback(async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getById(id!);
+        setRestaurant(data);
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }, [getById, id]);
+
+    const refreshUserFavorites = useCallback(async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getFavorites(user?.ID!);
+        setFavorites(data);
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }, [favorites]);
     
-      useEffect(() => {
-        refreshRestaurant();
-      }, []);
+    useEffect(() => {
+      refreshRestaurant();
+      refreshUserFavorites();
+    }, [id]);
 
     return (
         <div className="restaurants-page">
@@ -52,7 +101,10 @@ export default memo(function Restaurant() {
           <div className="breadcrumb">
             <div className="bc-det">
                 <h1>{restaurant?.name}</h1>
-                <button className="fav-btn">Add to favorites</button>
+                {!favorites.some((fav) => fav.ID === restaurant?.ID) ? 
+                <button className="fav-btn" onClick={addFav}>Add favorite <FaRegHeart /></button> : 
+                <button className="fav-btn" onClick={removeFav}>Remove favorite <FaHeartBroken /></button>
+                }
             </div>
             <span />
           </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { Restaurant } from "../interfaces";
+import { Restaurant, Timeslot } from "../interfaces";
 
 // Base URL
 const baseURL = import.meta.env.VITE_SERVER_URL;
@@ -27,7 +27,17 @@ const useRestaurants = () => {
     }
   }, []);
 
-  return { getAll, getById };
+  const getTimeslotsById = useCallback(async (id: string): Promise<Timeslot[]> => {
+    try {
+      const { data } = await axios.get(`${baseURL}/api/restaurants/${id}/timeslots`);
+      return data;
+    } catch (error) {
+      console.error("Error fetching user by name:", error);
+      throw error;
+    }
+  }, []);
+
+  return { getAll, getById, getTimeslotsById };
 };
 
 export default useRestaurants;

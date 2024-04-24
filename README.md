@@ -38,3 +38,9 @@ Bachelorproef TI-2024
 
 ### 21/04/2024
 - Frontend add & remove favorite functionality in detail page
+
+### 24/04/2024
+- Backend reservation routes, models & controllers
+- Backend timeslot model & controller (with restaurants)
+- Fronted reservations & timeslots api calls
+- Frontend make reservation functionality

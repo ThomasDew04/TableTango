@@ -7,6 +7,7 @@ export interface Restaurant {
     openinghours: string;
     description: string;
     images: string;
+    num_tables: number;
 }
 
 export interface User {
@@ -20,4 +21,22 @@ export interface User {
 export interface Favorite {
     user_id: number;
     restaurant_id: number;
+}
+
+export interface Reservation {
+    reservation_id?: number;
+    user_id: number;
+    restaurant_id: number;
+    timeslot_id: number;
+    reservation_datetime: Date;
+    num_guests: number;
+    name: string;
+    phone: string;
+    image? : string;
+}
+
+export interface Timeslot {
+    timeslot_id: number;
+    restaurant_id: number;
+    start_time: string;
 }

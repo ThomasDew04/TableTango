@@ -640,7 +640,7 @@ nav .nav-account {
     display: flex;
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: center;
+    text-align: left;
     border: none;
     color: var(--light-blue);
     gap: 15px;

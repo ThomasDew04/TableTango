@@ -6,6 +6,7 @@ import morgan from "morgan";
 import restaurantRoutes from "./routes/restaurants";
 import userRoutes from "./routes/users";
 import favoriteRoutes from "./routes/favorites";
+import reservationRoutes from "./routes/reservations";
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,9 @@ console.log('📜 Logger initialized');
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/favorites", favoriteRoutes);
+app.use("/api/reservations", reservationRoutes);
+console.log('🚧 Routes initialized');
+
 
 app.get("/favicon.ico", (req, res) => {
     // Serve a custom favicon or an empty response

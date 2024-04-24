@@ -1,5 +1,5 @@
 // Define the interface for the restaurant entity
-interface Restaurant {
+export interface Restaurant {
   id: number;
   name: string;
   cuisine: string;
@@ -10,4 +10,8 @@ interface Restaurant {
   images: string;
 }
 
-export default Restaurant;
+export interface Timeslot {
+  id: number;
+  restaurat_id: number;
+  start_time: string;
+}

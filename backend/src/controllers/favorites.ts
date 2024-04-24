@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import sql from 'mssql/msnodesqlv8';
 import Favorite from '../models/favorite';
-import Restaurant from '../models/restaurant';
+import { Restaurant } from '../models/restaurant';
 
 export const getFavorites = async (req: Request, res: Response): Promise<void> => {
     try {

@@ -173,7 +173,7 @@ export default memo(function Restaurant() {
         user_id: user?.ID!,
         restaurant_id: restaurant?.ID!,
         timeslot_id: selectedTimeslot?.timeslot_id!,
-        date: new Date(date + " " + selectedTimeslot?.start_time),
+        reservation_datetime: new Date(date + " " + selectedTimeslot?.start_time),
         num_guests: parseInt(selectedGuests),
         name: name,
         phone: phone,
@@ -182,7 +182,11 @@ export default memo(function Restaurant() {
         setLoading(true);
         setError(null);
         await createReservation(reservation);
-        refreshRestaurant();
+        setName("");
+        setPhone("");
+        setAmountGuests("1");
+        setDate(undefined);
+        setSelectedTimeslot(null);
       } catch (error: any) {
         setError(error.message);
       } finally {
@@ -244,13 +248,16 @@ export default memo(function Restaurant() {
                         <label className="la">Date</label>
                         <input 
                           type="date" 
+                          value={date ?? ""}
+                          min={new Date().toISOString().split('T')[0]}
                           onChange={(e) => (handleDateChange(e.target.value))}
                           />
                       </div>
                       <div className="second-res-i">
                         <label className="la">Time</label>
                         <select 
-                          disabled={availableTimeslots.length === 0}
+                          disabled={availableTimeslots.length === null}
+                          value={selectedTimeslot?.start_time}
                           onChange={(e) => handleTimeslotChange(e.target.value)} >
                           {availableTimeslots.map((timeslot) => (
                           <option key={timeslot.timeslot_id} value={timeslot.timeslot_id}>
@@ -272,11 +279,11 @@ export default memo(function Restaurant() {
                   </div>
                   <div className="second-res-box">
                     <label>Name</label>
-                    <input type="text" placeholder="Thomas" onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" value={name} placeholder="Thomas" onChange={(e) => setName(e.target.value)}/>
                   </div>
                   <div className="second-res-box">
                     <label>Phone</label>
-                    <input type="text" placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)}/>
+                    <input type="text" value={phone} placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)}/>
                   </div>
                   <button type="submit" className="reservate-btn">Reservate</button>
                 </div>

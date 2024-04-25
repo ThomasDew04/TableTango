@@ -10,7 +10,7 @@ export const getReservationsByUser = async (req: Request, res: Response): Promis
         const { id } = req.params;
 
         const result = await request.query<Reservation[]>(`
-            SELECT r.*, res.images
+            SELECT r.*, res.images, res.name as restaurant_name, res.address, res.cuisine
             FROM reservations AS r
             JOIN Users as u on r.user_id = u.ID
             JOIN Restaurants as res on r.restaurant_id = res.ID
@@ -56,7 +56,7 @@ export const createReservation = async (req: Request, res: Response): Promise<vo
             INSERT INTO reservations (user_id, restaurant_id, timeslot_id, reservation_datetime, num_guests, name, phone_number)
             OUTPUT INSERTED.*
             VALUES (${reservation.user_id}, ${reservation.restaurant_id}, 
-                ${reservation.timeslot_id}, '${reservation.date}', 
+                ${reservation.timeslot_id}, '${reservation.reservation_datetime}', 
                 ${reservation.num_guests}, '${reservation.name}', 
                 '${reservation.phone}');
         `);

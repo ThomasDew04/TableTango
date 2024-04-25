@@ -44,3 +44,7 @@ Bachelorproef TI-2024
 - Backend timeslot model & controller (with restaurants)
 - Fronted reservations & timeslots api calls
 - Frontend make reservation functionality
+
+### 25/04/2024
+- Frontend reservation page
+- Frontend reservation card component

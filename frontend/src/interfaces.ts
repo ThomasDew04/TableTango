@@ -32,7 +32,10 @@ export interface Reservation {
     num_guests: number;
     name: string;
     phone: string;
-    image? : string;
+    images? : string;
+    restaurant_name?: string;
+    address?: string;
+    cuisine?: string;
 }
 
 export interface Timeslot {

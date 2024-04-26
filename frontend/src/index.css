@@ -1263,3 +1263,16 @@ footer {
     height: 90px;
     object-fit: cover;
 }
+
+/* -------------------------- END OF FOOTER ----------------------------- */
+
+.not-found {
+    height: calc(100vh - 120px);
+}
+
+.nf-info {
+    margin: 0 120px 0 120px;
+    color: var(--light-blue);
+    font-size: 1.2rem;
+    font-weight: 600;
+}

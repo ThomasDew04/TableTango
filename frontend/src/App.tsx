@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 import { Restaurants, Restaurant, Reservations, Favorites, Login, Register, Account } from "./pages/index"
 import { AuthProvider } from "./components/auth/AuthProvider"
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
           </Routes>
+          <Footer />
         </AuthProvider>
     </>
   )

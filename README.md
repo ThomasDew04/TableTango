@@ -48,3 +48,8 @@ Bachelorproef TI-2024
 ### 25/04/2024
 - Frontend reservation page
 - Frontend reservation card component
+
+### 26/04/2024
+- Backend getAvailableRestaurantsByDate function in restaurant controller
+- Frontend getAvailableRestaurantsByDate api call
+- Frontend filter restaurants by date

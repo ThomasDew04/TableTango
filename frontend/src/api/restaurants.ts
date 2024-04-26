@@ -37,7 +37,17 @@ const useRestaurants = () => {
     }
   }, []);
 
-  return { getAll, getById, getTimeslotsById };
+  const getAvailableRestaurantsByDate = useCallback(async (date: string): Promise<Restaurant[]> => {
+    try {
+      const { data } = await axios.get(`${baseURL}/api/restaurants/available/${date}`);
+      return data;
+    } catch (error) {
+      console.error("Error fetching user by name:", error);
+      throw error;
+    }
+  }, []);
+
+  return { getAll, getById, getTimeslotsById, getAvailableRestaurantsByDate };
 };
 
 export default useRestaurants;

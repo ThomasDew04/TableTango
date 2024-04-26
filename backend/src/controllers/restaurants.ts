@@ -54,6 +54,44 @@ export const getTimeslotsByRestaurantId = async (req: Request, res: Response): P
     }
 };
 
+export const getAvailableRestaurantsByDate = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const connection = req.app.locals.db;
+        const request = new sql.Request(connection);
+
+        const { date } = req.params;
+
+        const result = await request.query<Restaurant[]>(`
+        SELECT r.*
+        FROM (
+            SELECT 
+                r.ID AS restaurant_id,
+                r.name,
+                r.num_tables,
+                CASE WHEN r.num_tables * COUNT(DISTINCT t.timeslot_id) - COUNT(DISTINCT res.reservation_id) > 0 
+                THEN 'true' ELSE 'false' END AS hasPlace
+            FROM 
+                Restaurants r
+            LEFT JOIN 
+                Timeslots t ON r.ID = t.restaurant_id
+            LEFT JOIN 
+                Reservations res ON t.timeslot_id = res.timeslot_id 
+                AND r.ID = res.restaurant_id 
+                AND CONVERT(DATE, res.reservation_datetime) = CONVERT(DATE, '${date}')
+            GROUP BY 
+                r.ID, r.name, r.num_tables
+        ) AS subquery
+        JOIN Restaurants r ON subquery.restaurant_id = r.ID
+        WHERE hasPlace = 'true';
+        `);
+
+        const restaurants: Restaurant[] = result.recordset;
+        res.json(restaurants);
+    } catch (error: any) {
+        res.status(500).json({ message: 'Error retrieving restaurants', error: error.message });
+    }
+};
+
 
 export const createRestaurant = async (req: Request, res: Response): Promise<void> => {
     try {

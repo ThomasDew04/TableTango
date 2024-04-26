@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import sql from 'mssql/msnodesqlv8';
-import Restaurant from '../models/restaurant';
+import { Restaurant, Timeslot } from '../models/restaurant';
 
 export const getRestaurants = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -35,6 +35,25 @@ export const getRestaurantById = async (req: Request, res: Response): Promise<vo
         res.status(500).json({ message: 'Error retrieving restaurant', error: error.message });
     }
 }
+
+export const getTimeslotsByRestaurantId = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const connection = req.app.locals.db;
+        const request = new sql.Request(connection);
+
+        const { id } = req.params;
+
+        const result = await request.query<Timeslot[]>(`
+            SELECT * FROM Timeslots WHERE restaurant_id = ${id}
+        `);
+
+        const timeslots: Timeslot[] = result.recordset;
+        res.json(timeslots);
+    } catch (error: any) {
+        res.status(500).json({ message: 'Error retrieving timeslots', error: error.message });
+    }
+};
+
 
 export const createRestaurant = async (req: Request, res: Response): Promise<void> => {
     try {

@@ -157,16 +157,27 @@ nav .nav-account {
 .error-container {
     z-index: 1000;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: rgb(204, 0, 0) 3px solid;
-    background-color: rgba(255, 0, 0, 0.252);
-    border-radius: 10px;
+    top: 2%;
+    right: 0;
+    border: rgb(204, 0, 0) 5px solid;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    background-color: var(--white);
     min-height: 120px;
     height: fit-content;
     width: 350px;
     padding: 8px;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .error-container span {

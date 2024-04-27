@@ -54,10 +54,12 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             return;
         }
 
+        const date = new Date();
+
         const result = await request.query<User>(`
-        INSERT INTO Users (name, email, password)
+        INSERT INTO Users (name, email, password, createdAt)
         OUTPUT INSERTED.*
-        VALUES ('${user.name}', '${user.email}', '${user.password}')
+        VALUES ('${user.name}', '${user.email}', '${user.password}', '${date.toISOString()}')
         `);
 
         const newUser: User = result.recordset[0];

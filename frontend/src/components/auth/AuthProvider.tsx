@@ -28,8 +28,9 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: Props ) => {
     const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-      () => !!localStorage.getItem('isAuthenticated')
+      localStorage.getItem('isAuthenticated') === 'true'
     );
+    
 
     const navigate = useNavigate();
     const location = useLocation();

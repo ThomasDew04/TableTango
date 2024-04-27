@@ -5,6 +5,7 @@ import { BiLogOut } from "react-icons/bi";
 import placeholder from "../images/account-placeholder.png";
 import AccountModal from "../components/diverse/AccountModal";
 import { CiCircleChevDown } from "react-icons/ci";
+import { User } from "../interfaces";
 
 export default memo(function Account() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -29,6 +30,21 @@ export default memo(function Account() {
         setModalProps({ field: '', currentValue: '', type:'' });
     };
 
+    const calculateTimeDifference = (createdAt: Date): [number, string] => {
+        const currentDate = new Date();
+        const differenceInMilliseconds = currentDate.getTime() - createdAt.getTime();
+        const differenceInDays = differenceInMilliseconds / (1000 * 3600 * 24);
+        const differenceInMonths = differenceInDays / 30;
+      
+        if (differenceInMonths < 1) {
+          const differenceInDaysRounded = Math.floor(differenceInDays);
+          return [differenceInDaysRounded, 'days'];
+        } else {
+          const differenceInMonthsRounded = Math.floor(differenceInMonths);
+          return [differenceInMonthsRounded, 'months'];
+        }
+    };
+
     interface InfoRowProps {
         label: string;
         value: string;
@@ -47,6 +63,15 @@ export default memo(function Account() {
             </div>
         );
     };
+
+    const UserTimeOnTableTango = ({ user }: { user?: User }) => {
+        const [timeDifference, timeUnit] = calculateTimeDifference(new Date(user?.createdAt!));
+
+        return (
+            <p><strong>{timeDifference}</strong> 
+            <br />{timeUnit} on TableTango</p>
+        );
+      };
 
     return (
         <div className="restaurants-page">
@@ -72,7 +97,7 @@ export default memo(function Account() {
                         {/* REPLACE WITH DATA */}
                         <p><strong>9</strong> <br />Reservations made</p>
                         <span className="light-divider"/>
-                        <p><strong>5</strong> <br />Months on TableTango</p>
+                        <UserTimeOnTableTango user={user!} />
                         <span className="light-divider"/>
                         <p><strong>235</strong> <br />TableTango points</p>
                     </div>

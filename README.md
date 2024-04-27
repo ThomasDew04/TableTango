@@ -53,3 +53,7 @@ Bachelorproef TI-2024
 - Backend getAvailableRestaurantsByDate function in restaurant controller
 - Frontend getAvailableRestaurantsByDate api call
 - Frontend filter restaurants by date
+
+### 27/04/2024
+- Frontend fix error timeslots not working
+- Frontend error handling (bad restaurant id)

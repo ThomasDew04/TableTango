@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import useRestaurants from "../api/restaurants";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Favorite, Reservation, Restaurant, Timeslot } from "../interfaces";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
@@ -40,6 +40,7 @@ export default memo(function Restaurant() {
     const { getReservationsByRestaurantByDate, createReservation } = useReservations();
     const { user } = useAuth();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const addFav = async () => {
       const favorite: Favorite = {
@@ -76,6 +77,10 @@ export default memo(function Restaurant() {
         setLoading(true);
         setError(null);
         const data = await getById(id!);
+        if (typeof(data) === "string") {
+          navigate("/404");
+          return;
+        }
         setRestaurant(data);
       } catch (error: any) {
         setError(error.message);
@@ -187,6 +192,7 @@ export default memo(function Restaurant() {
         setAmountGuests("1");
         setDate(undefined);
         setSelectedTimeslot(null);
+        setAvailableTimeslots([]);
       } catch (error: any) {
         setError(error.message);
       } finally {
@@ -256,8 +262,7 @@ export default memo(function Restaurant() {
                       <div className="second-res-i">
                         <label className="la">Time</label>
                         <select 
-                          disabled={availableTimeslots.length === null}
-                          value={selectedTimeslot?.start_time}
+                          disabled={availableTimeslots.length === 0}
                           onChange={(e) => handleTimeslotChange(e.target.value)} >
                           {availableTimeslots.map((timeslot) => (
                           <option key={timeslot.timeslot_id} value={timeslot.timeslot_id}>

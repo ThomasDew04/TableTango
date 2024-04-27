@@ -57,9 +57,9 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         const date = new Date();
 
         const result = await request.query<User>(`
-        INSERT INTO Users (name, email, password, createdAt)
+        INSERT INTO Users (name, email, password, createdAt, resvMade)
         OUTPUT INSERTED.*
-        VALUES ('${user.name}', '${user.email}', '${user.password}', '${date.toISOString()}')
+        VALUES ('${user.name}', '${user.email}', '${user.password}', '${date.toISOString()}', 0)
         `);
 
         const newUser: User = result.recordset[0];
@@ -83,6 +83,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         if (user.password) updatedFields.push(`password = '${user.password}'`);
         if (user.email) updatedFields.push(`email = '${user.email}'`);
         if (user.image) updatedFields.push(`image = '${user.image}'`);
+        if (user.resvMade) updatedFields.push(`resvMade = ${user.resvMade}`);
 
         const setClause = updatedFields.join(', ');
 

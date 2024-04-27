@@ -38,7 +38,7 @@ export default memo(function Restaurant() {
     const { getById, getTimeslotsById } = useRestaurants();
     const { addFavorite, getFavorites, deleteFavorite } = useFavorites();
     const { getReservationsByRestaurantByDate, createReservation } = useReservations();
-    const { user } = useAuth();
+    const { user, updateUserData } = useAuth();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -187,6 +187,7 @@ export default memo(function Restaurant() {
         setLoading(true);
         setError(null);
         await createReservation(reservation);
+        updateUserData("resvMade", (user?.resvMade! + 1).toString());
         setName("");
         setPhone("");
         setAmountGuests("1");

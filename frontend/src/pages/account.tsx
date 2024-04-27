@@ -95,7 +95,7 @@ export default memo(function Account() {
                         <h2>{user?.name}</h2>
                         <span className="dark-divider"/>
                         {/* REPLACE WITH DATA */}
-                        <p><strong>9</strong> <br />Reservations made</p>
+                        <p><strong>{user?.resvMade}</strong> <br />Reservations made</p>
                         <span className="light-divider"/>
                         <UserTimeOnTableTango user={user!} />
                         <span className="light-divider"/>

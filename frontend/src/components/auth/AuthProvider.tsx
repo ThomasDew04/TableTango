@@ -77,7 +77,13 @@ export const AuthProvider = ({ children }: Props ) => {
     const updateUserData = async (field: string, value: string) => {
       try {
         if (!user) throw new Error('User not found');
-        const updatedUser = { ...user, [field]: value };
+        let updatedUser = { ...user };
+        // If the field is 'resvMade', parse the value to an integer
+        if (field === 'resvMade') {
+          updatedUser = { ...updatedUser, [field]: parseInt(value) };
+        } else {
+          updatedUser = { ...updatedUser, [field]: value };
+        }
         await update(updatedUser);
         setUser(updatedUser);
         localStorage.setItem('user', JSON.stringify(updatedUser));

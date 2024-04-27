@@ -17,6 +17,7 @@ export interface User {
     password: string;
     image?: string;
     createdAt: string;
+    resvMade: number;
 }
 
 export interface Favorite {

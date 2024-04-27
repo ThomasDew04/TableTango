@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 import useReservations from "../api/reservations";
 import ReservationCard from "../components/diverse/ReservationCard";
+import { useAuth } from "../components/auth/AuthProvider";
 
 export default memo(function Reservations() {
     const [ upcomingReservations, setUpcomingReservations ] = useState<Reservation[]>([]);
@@ -12,6 +13,7 @@ export default memo(function Reservations() {
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const { getReservationsByUser, deleteReservation } = useReservations();
+    const { user, updateUserData } = useAuth();
     const user_id = JSON.parse(localStorage.getItem("user")!).ID;
 
     const filterReservatiions = (reservations: Reservation[]) => {
@@ -42,6 +44,7 @@ export default memo(function Reservations() {
     const cancelReservation = async (id: number) => {
       try {
           await deleteReservation(id);
+          await updateUserData("resvMade", (user?.resvMade! - 1).toString());
           refreshReservations();
       } catch (error: any) {
           console.error("Error deleting reservation:", error);

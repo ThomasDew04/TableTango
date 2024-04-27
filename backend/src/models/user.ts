@@ -7,6 +7,7 @@ interface User {
   image: string;
   createdAt: string;
   resvMade: number;
+  tabletangoPoints: number;
 }
   
 export default User;

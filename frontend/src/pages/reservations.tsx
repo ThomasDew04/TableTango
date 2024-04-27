@@ -13,7 +13,7 @@ export default memo(function Reservations() {
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const { getReservationsByUser, deleteReservation } = useReservations();
-    const { user, updateUserData } = useAuth();
+    const { user, reservationUpdate } = useAuth();
     const user_id = JSON.parse(localStorage.getItem("user")!).ID;
 
     const filterReservatiions = (reservations: Reservation[]) => {
@@ -44,7 +44,7 @@ export default memo(function Reservations() {
     const cancelReservation = async (id: number) => {
       try {
           await deleteReservation(id);
-          await updateUserData("resvMade", (user?.resvMade! - 1).toString());
+          reservationUpdate(user?.resvMade! - 1, user?.tabletangoPoints! - 15);
           refreshReservations();
       } catch (error: any) {
           console.error("Error deleting reservation:", error);

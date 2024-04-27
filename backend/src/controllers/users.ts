@@ -57,9 +57,9 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         const date = new Date();
 
         const result = await request.query<User>(`
-        INSERT INTO Users (name, email, password, createdAt, resvMade)
+        INSERT INTO Users (name, email, password, createdAt, resvMade, tabletangoPoints)
         OUTPUT INSERTED.*
-        VALUES ('${user.name}', '${user.email}', '${user.password}', '${date.toISOString()}', 0)
+        VALUES ('${user.name}', '${user.email}', '${user.password}', '${date.toISOString()}', 0, 0)
         `);
 
         const newUser: User = result.recordset[0];
@@ -84,6 +84,10 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         if (user.email) updatedFields.push(`email = '${user.email}'`);
         if (user.image) updatedFields.push(`image = '${user.image}'`);
         if (user.resvMade) updatedFields.push(`resvMade = ${user.resvMade}`);
+        if (user.tabletangoPoints) updatedFields.push(`tabletangoPoints = ${user.tabletangoPoints}`);
+
+        console.log(user.resvMade)
+        console.log(user.tabletangoPoints)
 
         const setClause = updatedFields.join(', ');
 

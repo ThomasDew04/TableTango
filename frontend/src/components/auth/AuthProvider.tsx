@@ -9,6 +9,7 @@ interface AuthContextType {
     login: (userData: User) => void;
     logout: () => void;
     updateUserData: (field: string, value: string) => void;
+    reservationUpdate: (resvMade: number, tabletangoPoints: number) => void;
   }
 
   const AuthContext = createContext<AuthContextType>({
@@ -17,6 +18,7 @@ interface AuthContextType {
     login: () => {},
     logout: () => {}, 
     updateUserData: () => {},
+    reservationUpdate: () => {}
 });
 
 type Props = {
@@ -79,8 +81,8 @@ export const AuthProvider = ({ children }: Props ) => {
         if (!user) throw new Error('User not found');
         let updatedUser = { ...user };
         // If the field is 'resvMade', parse the value to an integer
-        if (field === 'resvMade') {
-          updatedUser = { ...updatedUser, [field]: parseInt(value) };
+        if (field === 'resvMade' || field === 'tabletangoPoints') {
+          updatedUser = { ...updatedUser, [field]: parseInt(value)};
         } else {
           updatedUser = { ...updatedUser, [field]: value };
         }
@@ -92,9 +94,21 @@ export const AuthProvider = ({ children }: Props ) => {
       }
     }
 
+    const reservationUpdate = async (resvMade: number, tabletangoPoints: number) => {
+      try {
+        if (!user) throw new Error('User not found');
+        let updatedUser = { ...user };
+        updatedUser = { ...updatedUser, resvMade, tabletangoPoints };
+        await update(updatedUser);
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+      } catch (error: any) {
+        console.error('Error updating user data:', error.message);
+      }
+    };
 
     return (
-      <AuthContext.Provider value={{ isAuthenticated, user, login, logout, updateUserData }}>
+      <AuthContext.Provider value={{ isAuthenticated, user, login, logout, updateUserData, reservationUpdate }}>
         {children}
       </AuthContext.Provider>
     );

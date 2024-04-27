@@ -18,6 +18,7 @@ export interface User {
     image?: string;
     createdAt: string;
     resvMade: number;
+    tabletangoPoints: number;
 }
 
 export interface Favorite {

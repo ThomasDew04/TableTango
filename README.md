@@ -57,3 +57,4 @@ Bachelorproef TI-2024
 ### 27/04/2024
 - Frontend fix error timeslots not working
 - Frontend error handling (bad restaurant id)
+- Backend & Frontend new users (createdAt, resvMade & points)

@@ -24,7 +24,7 @@ const AccountModal = ( { field, currentValue, type, onCancel  } : AccountModalPr
 
     return (
         <div className="account-modal">
-            <h2>Edit {field}</h2>
+            <h2 data-cy="edit-field">Edit {field}</h2>
             <form onSubmit={updateUser}>
                 <input
                     type={type}
@@ -32,10 +32,11 @@ const AccountModal = ( { field, currentValue, type, onCancel  } : AccountModalPr
                     name={field}
                     defaultValue={currentValue || ''}
                     onChange={(e) => setValue(e.target.value)}
+                    data-cy="edit-field-input"
                     />
                 <span>
                     <button type="button" onClick={() => onCancel()}>Cancel</button>
-                    <button type="submit">Save</button>
+                    <button type="submit" data-cy="save-acc-btn">Save</button>
                 </span>
             </form>
         </div>

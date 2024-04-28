@@ -53,6 +53,7 @@ export default memo(function Login() {
                             required 
                             placeholder="Thomas123" 
                             value={username}
+                            data-cy="username"
                             onChange={(e) => setUsername(e.target.value)} 
                             />
                     </div>
@@ -63,6 +64,7 @@ export default memo(function Login() {
                                 required 
                                 placeholder="********"
                                 value={password}
+                                data-cy="password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 />
                             <button className="center" type="button" onClick={toggleVisibility}>
@@ -70,7 +72,7 @@ export default memo(function Login() {
                             </button>
                         </div>
                     </div>
-                    <button type="submit" className="login-btn">Login</button>
+                    <button type="submit" className="login-btn" data-cy="login-btn">Login</button>
                 </form>
                 <p className="no-account center">Don't have an account? <Link to="/register">Register</Link></p>
             </div>

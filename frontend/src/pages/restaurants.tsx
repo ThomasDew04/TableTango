@@ -86,6 +86,7 @@ export default memo(function Restaurants() {
               className="filter-input" 
               min={new Date().toISOString().split('T')[0]}
               onChange={(e) => getAvailableRestaurants(e.target.value)}
+              data-cy="date-filter"
             />
           </div>
           <span />
@@ -121,7 +122,7 @@ export default memo(function Restaurants() {
       <section>
         <div className="restaurants-cards-container">
         {filterRestaurants(availableRestaurants).map((restaurant) => (
-          <RestaurantCard key={restaurant.ID} restaurant={restaurant} />
+          <RestaurantCard key={restaurant.ID} restaurant={restaurant}/>
         ))}
         </div>
       </section>

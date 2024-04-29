@@ -208,9 +208,9 @@ export default memo(function Restaurant() {
           <BackButton />
           <div className="breadcrumb">
             <div className="bc-det">
-                <h1>{restaurant?.name}</h1>
+                <h1 data-cy={restaurant?.name + "test"}>{restaurant?.name}</h1>
                 {!favorites.some((fav) => fav.ID === restaurant?.ID) ? 
-                <button className="fav-btn" onClick={addFav}>Add favorite <FaRegHeart /></button> : 
+                <button className="fav-btn" onClick={addFav} data-cy="add-fav">Add favorite <FaRegHeart /></button> : 
                 <button className="fav-btn" onClick={removeFav}>Remove favorite <FaHeartBroken /></button>
                 }
             </div>
@@ -258,11 +258,13 @@ export default memo(function Restaurant() {
                           value={date ?? ""}
                           min={new Date().toISOString().split('T')[0]}
                           onChange={(e) => (handleDateChange(e.target.value))}
+                          data-cy="date-filter-resv"
                           />
                       </div>
                       <div className="second-res-i">
                         <label className="la">Time</label>
                         <select 
+                          data-cy="timeslot-filter"
                           disabled={availableTimeslots.length === 0}
                           onChange={(e) => handleTimeslotChange(e.target.value)} >
                           {availableTimeslots.map((timeslot) => (
@@ -275,7 +277,7 @@ export default memo(function Restaurant() {
                     </div>
                     <div className="bottom-res-row">
                       <label>Guests</label>
-                      <select value={selectedGuests} onChange={(e) => setAmountGuests(e.target.value)}>
+                      <select value={selectedGuests} onChange={(e) => setAmountGuests(e.target.value)} data-cy="num-guests">
                         <option value="1">1 guest</option>
                         <option value="2">2 guests</option>
                         <option value="3">3 guests</option>
@@ -285,13 +287,13 @@ export default memo(function Restaurant() {
                   </div>
                   <div className="second-res-box">
                     <label>Name</label>
-                    <input type="text" value={name} placeholder="Thomas" onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" value={name} placeholder="Thomas" onChange={(e) => setName(e.target.value)} data-cy="resv-name" />
                   </div>
                   <div className="second-res-box">
                     <label>Phone</label>
-                    <input type="text" value={phone} placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)}/>
+                    <input type="text" value={phone} placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)} data-cy="resv-phone" />
                   </div>
-                  <button type="submit" className="reservate-btn">Reservate</button>
+                  <button type="submit" className="reservate-btn" data-cy="resv-btn" >Reservate</button>
                 </div>
               </form>
             </div>

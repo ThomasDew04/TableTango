@@ -58,3 +58,7 @@ Bachelorproef TI-2024
 - Frontend fix error timeslots not working
 - Frontend error handling (bad restaurant id)
 - Backend & Frontend new users (createdAt, resvMade & points)
+
+### 28/04/2024
+- Frontend Cypress added
+- Frontend Cypress tests for account & restaurant

@@ -19,7 +19,7 @@ const RestaurantCard = ({ restaurant }: Data ) => {
         <Link to={`/restaurants/${restaurant.ID}`} className="restaurant-card">
             <img src={restaurant.images.split(' ')[0]} alt={restaurant.name} />
             <div className="restaurant-card-info">
-                <h1>{restaurant.name}</h1>
+                <h1 data-cy={restaurant.name}>{restaurant.name}</h1>
                 <span><FaLocationDot size={25} /><p>{restaurant.address}</p></span>
                 <span><PiForkKnifeFill size={25} /><p>{restaurant.cuisine}</p></span>
                 <span><RiCoinsFill size={25} />

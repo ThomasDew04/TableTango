@@ -50,7 +50,10 @@ export default memo(function Favorites() {
             <Error error={error} />
             <BreadCrumb page="Favorites"/>
             <div className="favorites-container">
-            {restaurants.map((restaurant) => (
+            {restaurants.length === 0 ? 
+                <p className="no-res">No favorites yet, go explore!</p> 
+                : 
+                restaurants.map((restaurant) => (
                 <div className="fav-card" key={restaurant.ID}>
                     <RestaurantCard restaurant={restaurant} />
                     <button onClick={() => remove(restaurant.ID)}><FaHeart size={25} /></button>

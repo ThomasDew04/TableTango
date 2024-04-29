@@ -50,23 +50,23 @@ export default memo(function Account() {
         value: string;
         onClickEdit: () => void;
         fieldType?: string;
+        test: string;
     }
     
-    const InfoRow = ({ label, value, onClickEdit, fieldType }: InfoRowProps) => {
+    const InfoRow = ({ label, value, onClickEdit, fieldType, test }: InfoRowProps) => {
         return (
             <div className="info-row">
                 <span className="info-label">
                     <h3>{label}</h3>
-                    <button onClick={onClickEdit}>Edit</button>
+                    <button onClick={onClickEdit} data-cy={test} >Edit</button>
                 </span>
-                <p>{fieldType === 'password' ? '*******************' : value}</p>
+                <p data-cy={`acc-field-${test}`}>{fieldType === 'password' ? '*******************' : value}</p>
             </div>
         );
     };
 
     const UserTimeOnTableTango = ({ user }: { user?: User }) => {
         const [timeDifference, timeUnit] = calculateTimeDifference(new Date(user?.createdAt!));
-
         return (
             <p><strong>{timeDifference}</strong> 
             <br />{timeUnit} on TableTango</p>
@@ -78,7 +78,9 @@ export default memo(function Account() {
             <div className="breadcrumb">
                 <div className="bc-det">
                     <h1>Account</h1>
-                    <button className="logout-btn" onClick={handleLogout}><p>Logout</p><BiLogOut size={25} /></button>
+                    <button className="logout-btn" onClick={handleLogout} data-cy="logout-btn">
+                        <p>Logout</p><BiLogOut size={25} />
+                    </button>
                 </div>
                 <span />
             </div>
@@ -92,7 +94,7 @@ export default memo(function Account() {
                         <img className="account-img" src={placeholder} alt="User" /> }
                         <div className="overlay center" onClick={() => toggleModal('image', 'text', user?.image)}>Change</div>
                         </span>
-                        <h2>{user?.name}</h2>
+                        <h2 data-cy="account-username">{user?.name}</h2>
                         <span className="dark-divider"/>
                         <p><strong>{user?.resvMade}</strong> <br />Reservations made</p>
                         <span className="light-divider"/>
@@ -102,7 +104,7 @@ export default memo(function Account() {
                     </div>
                 </div>
                 <div className="right-account">
-                    <div className="personal-info" onClick={() => setIsVisible((prev) => !prev)}>
+                    <div className="personal-info" onClick={() => setIsVisible((prev) => !prev)} data-cy="pers-info">
                         <h2>Personal info</h2>
                         <CiCircleChevDown size={35} />
                     </div>
@@ -111,17 +113,20 @@ export default memo(function Account() {
                             label="Username"
                             value={user?.name!}
                             onClickEdit={() => toggleModal('name', 'text', user?.name)}
+                            test="username"
                         />
                         <InfoRow
                             label="Password"
                             value=""
                             onClickEdit={() => toggleModal('password', 'password', '')}
                             fieldType="password"
+                            test="password"
                         />
                         <InfoRow
                             label="Email"
                             value={user?.email!}
                             onClickEdit={() => toggleModal('email', 'text', user?.email)}
+                            test="mail"
                         />
                     </div>
                     <div className="personal-info" onClick={() => setIsVisible2((prev) => !prev)}>
@@ -133,6 +138,7 @@ export default memo(function Account() {
                             label="Language"
                             value="English"
                             onClickEdit={() => toggleModal('language', 'text', "English")}
+                            test="language"
                         />
                     </div>
                 </div>

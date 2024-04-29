@@ -13,11 +13,11 @@ interface Data {
 const ReservationCard = ({ reservation, in_past, deleteReservation }: Data) => {
 
     return (
-        <div className="reservation-card" key={reservation.reservation_id}>
+        <div className="reservation-card" key={reservation.reservation_id} data-cy={reservation.name}>
         <div className="res-card-info">
             <div className="res-top-row">
                 <h3>{reservation.restaurant_name}</h3>
-                {in_past ? "" : <button className="cncl-btn" onClick={() => deleteReservation(reservation.reservation_id!)}>Cancel</button>}
+                {in_past ? "" : <button className="cncl-btn" onClick={() => deleteReservation(reservation.reservation_id!)} data-cy="cncl-resv">Cancel</button>}
             </div>
           <span className="tf"><PiForkKnifeFill size={40} /><p>{reservation.cuisine}</p></span>
           <div className="res-bot-row">

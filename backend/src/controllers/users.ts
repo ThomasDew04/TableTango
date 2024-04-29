@@ -86,9 +86,6 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         if (user.resvMade) updatedFields.push(`resvMade = ${user.resvMade}`);
         if (user.tabletangoPoints) updatedFields.push(`tabletangoPoints = ${user.tabletangoPoints}`);
 
-        console.log(user.resvMade)
-        console.log(user.tabletangoPoints)
-
         const setClause = updatedFields.join(', ');
 
         const result = await request.query<User>(`

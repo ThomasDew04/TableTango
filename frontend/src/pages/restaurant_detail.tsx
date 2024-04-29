@@ -14,6 +14,7 @@ import useFavorites from "../api/favorites";
 import { useAuth } from "../components/auth/AuthProvider";
 import { FaHeartBroken, FaRegHeart } from "react-icons/fa";
 import useReservations from "../api/reservations";
+import Success from "../components/Success";
 
 function BackButton({}) {
     return (
@@ -34,7 +35,9 @@ export default memo(function Restaurant() {
     const [name, setName] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
     const [error, setError] = useState<null | string>(null);
+    const [success, setSuccess] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const user_id = JSON.parse(localStorage.getItem("user")!).ID;
     const { getById, getTimeslotsById } = useRestaurants();
     const { addFavorite, getFavorites, deleteFavorite } = useFavorites();
     const { getReservationsByRestaurantByDate, createReservation } = useReservations();
@@ -44,31 +47,41 @@ export default memo(function Restaurant() {
 
     const addFav = async () => {
       const favorite: Favorite = {
-          user_id: user?.ID!,
+          user_id: user_id,
           restaurant_id: restaurant?.ID!,
       }
       try {
           setLoading(true);
           setError(null);
           await addFavorite(favorite);
+          setSuccess("Favorite added!");
           refreshUserFavorites();
       } catch (error: any) {
           setError(error.message);
       } finally {
           setLoading(false);
+          setTimeout(() => {
+            setSuccess(null)
+            setError(null)
+          }, 5000);
       }
     };
 
     const removeFav = async () => {
       try {
-          setLoading(true);
-          setError(null);
-          await deleteFavorite(user?.ID!, restaurant?.ID!);
-          setFavorites((favorites) => favorites.filter((restaurant) => restaurant.ID !== restaurant?.ID));
+        setLoading(true);
+        setError(null);
+        await deleteFavorite(user_id, restaurant?.ID!);
+        setFavorites((favorites) => favorites.filter((restaurant) => restaurant.ID !== restaurant?.ID));
+        setSuccess("Favorite removed!");
       } catch (error: any) {
-          setError(error.message);
+        setError(error.message);
       } finally {
-          setLoading(false);
+        setLoading(false);
+        setTimeout(() => {
+          setSuccess(null)
+          setError(null)
+        }, 5000);
       }
     };
 
@@ -86,6 +99,9 @@ export default memo(function Restaurant() {
         setError(error.message);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          setError(null)
+        }, 5000);
       }
     }, [getById, id]);
 
@@ -93,12 +109,15 @@ export default memo(function Restaurant() {
       try {
         setLoading(true);
         setError(null);
-        const data = await getFavorites(user?.ID!);
+        const data = await getFavorites(user_id);
         setFavorites(data);
       } catch (error: any) {
         setError(error.message);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          setError(null)
+        }, 5000);
       }
     }, [favorites]);
 
@@ -112,6 +131,9 @@ export default memo(function Restaurant() {
         setError(error.message);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          setError(null)
+        }, 5000);
       }
     }, [getTimeslotsById, id]);
     
@@ -155,6 +177,9 @@ export default memo(function Restaurant() {
         setError(error.message);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          setError(null)
+        }, 5000);
       }
     };
 
@@ -169,13 +194,13 @@ export default memo(function Restaurant() {
         || selectedGuests == "0" 
         || date === undefined
       ) { setError("Fill in all required fields!") } else if (
-        user?.ID === undefined
+        user_id === undefined
         || restaurant?.ID === undefined
       ) { setError("User or restaurant not found!") }
       
       // Create reservation
       const reservation: Reservation = {
-        user_id: user?.ID!,
+        user_id: user_id,
         restaurant_id: restaurant?.ID!,
         timeslot_id: selectedTimeslot?.timeslot_id!,
         reservation_datetime: new Date(date + " " + selectedTimeslot?.start_time),
@@ -188,6 +213,7 @@ export default memo(function Restaurant() {
         setError(null);
         await createReservation(reservation);
         reservationUpdate(user?.resvMade! + 1, user?.tabletangoPoints! + 15);
+        setSuccess("Reservation made!");
         setName("");
         setPhone("");
         setAmountGuests("1");
@@ -198,6 +224,10 @@ export default memo(function Restaurant() {
         setError(error.message);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          setSuccess(null)
+          setError(null)
+        }, 5000);
       }
     };
 
@@ -205,13 +235,14 @@ export default memo(function Restaurant() {
         <div className="restaurants-page">
           <Loader loading={loading} />
           <Error error={error} />
+          <Success success={success} />
           <BackButton />
           <div className="breadcrumb">
             <div className="bc-det">
-                <h1>{restaurant?.name}</h1>
+                <h1 data-cy={restaurant?.name + "test"}>{restaurant?.name}</h1>
                 {!favorites.some((fav) => fav.ID === restaurant?.ID) ? 
-                <button className="fav-btn" onClick={addFav}>Add favorite <FaRegHeart /></button> : 
-                <button className="fav-btn" onClick={removeFav}>Remove favorite <FaHeartBroken /></button>
+                <button className="fav-btn" onClick={addFav} data-cy="add-fav">Add favorite <FaRegHeart /></button> : 
+                <button className="fav-btn" onClick={removeFav} data-cy="remove-fav">Remove favorite <FaHeartBroken /></button>
                 }
             </div>
             <span />
@@ -258,11 +289,13 @@ export default memo(function Restaurant() {
                           value={date ?? ""}
                           min={new Date().toISOString().split('T')[0]}
                           onChange={(e) => (handleDateChange(e.target.value))}
+                          data-cy="date-filter-resv"
                           />
                       </div>
                       <div className="second-res-i">
                         <label className="la">Time</label>
                         <select 
+                          data-cy="timeslot-filter"
                           disabled={availableTimeslots.length === 0}
                           onChange={(e) => handleTimeslotChange(e.target.value)} >
                           {availableTimeslots.map((timeslot) => (
@@ -275,7 +308,7 @@ export default memo(function Restaurant() {
                     </div>
                     <div className="bottom-res-row">
                       <label>Guests</label>
-                      <select value={selectedGuests} onChange={(e) => setAmountGuests(e.target.value)}>
+                      <select value={selectedGuests} onChange={(e) => setAmountGuests(e.target.value)} data-cy="num-guests">
                         <option value="1">1 guest</option>
                         <option value="2">2 guests</option>
                         <option value="3">3 guests</option>
@@ -285,13 +318,13 @@ export default memo(function Restaurant() {
                   </div>
                   <div className="second-res-box">
                     <label>Name</label>
-                    <input type="text" value={name} placeholder="Thomas" onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" value={name} placeholder="Thomas" onChange={(e) => setName(e.target.value)} data-cy="resv-name" />
                   </div>
                   <div className="second-res-box">
                     <label>Phone</label>
-                    <input type="text" value={phone} placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)}/>
+                    <input type="text" value={phone} placeholder="+32 478 48 26 15" onChange={(e) => setPhone(e.target.value)} data-cy="resv-phone" />
                   </div>
-                  <button type="submit" className="reservate-btn">Reservate</button>
+                  <button type="submit" className="reservate-btn" data-cy="resv-btn" >Reservate</button>
                 </div>
               </form>
             </div>

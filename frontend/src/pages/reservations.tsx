@@ -6,12 +6,14 @@ import Error from "../components/Error";
 import useReservations from "../api/reservations";
 import ReservationCard from "../components/diverse/ReservationCard";
 import { useAuth } from "../components/auth/AuthProvider";
+import Success from "../components/Success";
 
 export default memo(function Reservations() {
     const [ upcomingReservations, setUpcomingReservations ] = useState<Reservation[]>([]);
     const [pastReservations, setPastReservations] = useState<Reservation[]>([]);
     const [error, setError] = useState<null | string>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [success, setSuccess] = useState<null | string>(null);
     const { getReservationsByUser, deleteReservation } = useReservations();
     const { user, reservationUpdate } = useAuth();
     const user_id = JSON.parse(localStorage.getItem("user")!).ID;
@@ -34,6 +36,9 @@ export default memo(function Reservations() {
           setError(error.message);
         } finally {
           setLoading(false);
+          setTimeout(() => {
+            setError(null)
+          }, 5000);
         }
       },  [user_id]);
 
@@ -43,18 +48,28 @@ export default memo(function Reservations() {
 
     const cancelReservation = async (id: number) => {
       try {
+          setLoading(true);
+          setError(null);
           await deleteReservation(id);
           reservationUpdate(user?.resvMade! - 1, user?.tabletangoPoints! - 15);
           refreshReservations();
+          setSuccess("Reservation cancelled!");
       } catch (error: any) {
-          console.error("Error deleting reservation:", error);
+          setError("Error cancelling reservation");
+      } finally {
+        setLoading(false);
+        setTimeout(() => {
+          setSuccess(null)
+          setError(null)
+        }, 5000);
       }
     };
     
     return (
-        <div>
+        <div className="reservation-page">
             <Loader loading={loading} />
             <Error error={error} />
+            <Success success={success} />
             <BreadCrumb page="Reservations"/>
             <div className="reservations-container">
               <h2>Upcoming reservations</h2>

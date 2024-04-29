@@ -8,7 +8,7 @@ export default function AuthButton() {
 
     if (!isAuthenticated) {
         return (
-            <Link to="login" className="nav-account-login center">
+            <Link to="login" className="nav-account-login center" data-cy="auth-btn">
                 <p>Log in</p>
                 <BiLogIn size={35} />
             </Link>

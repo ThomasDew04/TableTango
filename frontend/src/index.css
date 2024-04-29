@@ -193,7 +193,39 @@ nav .nav-account {
     margin-left: 10px;
 }
 
-/* ------------------------------------------- END ERROR ------------------------------------ */
+.success-container {
+    z-index: 1000;
+    position: absolute;
+    top: 2%;
+    right: 0;
+    border: rgb(40, 172, 0) 8px solid;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    background-color: var(--white);
+    min-height: 120px;
+    height: fit-content;
+    width: 350px;
+    padding: 8px;
+    animation: slideIn 0.5s ease-in-out;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.success-container span {
+    display: flex;
+    align-items: center;
+    color: rgb(40, 172, 0);
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.success-container p {
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+
+/* ------------------------------------------- END ERROR & SUCCES ------------------------------------ */
 
 .restaurants-page {
     position: relative;
@@ -1275,4 +1307,8 @@ footer {
     color: var(--light-blue);
     font-size: 1.2rem;
     font-weight: 600;
+}
+
+.reservation-page, .favorites-page {
+    position: relative;
 }

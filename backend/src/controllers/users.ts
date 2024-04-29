@@ -36,7 +36,6 @@ export const getUserByName = async (req: Request, res: Response): Promise<void> 
     }
 }
 
-
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const connection = req.app.locals.db;
@@ -96,7 +95,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         `);
 
         const updatedUser: User = result.recordset[0];
-        res.json(updatedUser);
+        res.status(200).json(updatedUser);
     } catch (error: any) {
         res.status(500).json({ message: 'Error updating user', error: error.message });
     }

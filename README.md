@@ -65,4 +65,4 @@ Bachelorproef TI-2024
 
 ### 29/04/2024
 - Backend Jest added
-- Backend Jest test user
+- Backend Jest test user & restaurant

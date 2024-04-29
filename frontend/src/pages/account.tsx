@@ -67,7 +67,6 @@ export default memo(function Account() {
 
     const UserTimeOnTableTango = ({ user }: { user?: User }) => {
         const [timeDifference, timeUnit] = calculateTimeDifference(new Date(user?.createdAt!));
-
         return (
             <p><strong>{timeDifference}</strong> 
             <br />{timeUnit} on TableTango</p>

@@ -16,7 +16,7 @@ interface Data {
 
 const RestaurantCard = ({ restaurant }: Data ) => {
     return (
-        <Link to={`/restaurants/${restaurant.ID}`} className="restaurant-card">
+        <Link to={`/restaurants/${restaurant.ID}`} className="restaurant-card" data-cy={restaurant.name+"fav"}>
             <img src={restaurant.images.split(' ')[0]} alt={restaurant.name} />
             <div className="restaurant-card-info">
                 <h1 data-cy={restaurant.name}>{restaurant.name}</h1>

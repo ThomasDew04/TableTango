@@ -3,7 +3,6 @@ describe('Account tests', () => {
         cy.login('test', 'test');
     })
 
-    // - restaurant filteren op type eten
     it("Filter by foodtype", {
         "viewportWidth": 1920,
         "viewportHeight": 1080
@@ -16,7 +15,6 @@ describe('Account tests', () => {
         cy.get('[data-cy=restaurant-7]').should('not.exist');
     });
 
-    // - restaurant filteren op datum
     it("Filter by date", {
         "viewportWidth": 1920,
         "viewportHeight": 1080
@@ -31,7 +29,6 @@ describe('Account tests', () => {
         cy.get('[data-cy=NoPlace]').should('not.exist');
     });
 
-    // - klikken op restaurant
     it("Go to detail page", {
         "viewportWidth": 1920,
         "viewportHeight": 1080
@@ -43,8 +40,37 @@ describe('Account tests', () => {
         cy.wait(1000);
         cy.get('[data-cy=Tushtest]').should('exist');
     });
+
+    it("Add to favorites", {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080
+    }, () => {
+        cy.visit('http://localhost:8000/restaurants/4');
+        cy.get('[data-cy=Tushtest]').should('exist');
+
+        cy.wait(1000);
+        cy.get('[data-cy=add-fav]').click();
+
+        cy.wait(1000);
+        cy.visit('http://localhost:8000/favorites');
+        cy.get('[data-cy=Tushfav]').should('exist');
+    });
+
+    it("Remove from favorites", {
+        "viewportWidth": 1920,
+        "viewportHeight": 1080
+    }, () => {
+        cy.visit('http://localhost:8000/restaurants/4');
+        cy.get('[data-cy=Tushtest]').should('exist');
+
+        cy.wait(1000);
+        cy.get('[data-cy=remove-fav]').click();
+
+        cy.wait(1000);
+        cy.visit('http://localhost:8000/favorites');
+        cy.get('[data-cy=Tushfav]').should('not.exist');
+    });
     
-    // - reservatie maken
     it("Make reservation", {
         "viewportWidth": 1920,
         "viewportHeight": 1080
@@ -53,11 +79,9 @@ describe('Account tests', () => {
         cy.get('[data-cy=date-filter-resv]').type('2024-08-13');
 
         cy.wait(1000);
-        // cy.get('[data-cy=timeslot-filter]').click();
         cy.get('[data-cy=timeslot-filter]').select('15:00');
 
         cy.wait(1000);
-        // cy.get('[data-cy=num-guests]').click();
         cy.get('[data-cy=num-guests]').select('4');
         cy.get('[data-cy=resv-name]').type('test');
         cy.get('[data-cy=resv-phone]').type('test-phone');
@@ -69,7 +93,6 @@ describe('Account tests', () => {
         cy.get('[data-cy=test]').should('exist');
     });
 
-    // - reservatie annuleren
     it("Cancel reservation", {
         "viewportWidth": 1920,
         "viewportHeight": 1080

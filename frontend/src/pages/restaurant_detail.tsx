@@ -242,7 +242,7 @@ export default memo(function Restaurant() {
                 <h1 data-cy={restaurant?.name + "test"}>{restaurant?.name}</h1>
                 {!favorites.some((fav) => fav.ID === restaurant?.ID) ? 
                 <button className="fav-btn" onClick={addFav} data-cy="add-fav">Add favorite <FaRegHeart /></button> : 
-                <button className="fav-btn" onClick={removeFav}>Remove favorite <FaHeartBroken /></button>
+                <button className="fav-btn" onClick={removeFav} data-cy="remove-fav">Remove favorite <FaHeartBroken /></button>
                 }
             </div>
             <span />

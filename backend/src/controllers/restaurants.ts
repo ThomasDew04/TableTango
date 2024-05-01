@@ -98,12 +98,12 @@ export const createRestaurant = async (req: Request, res: Response): Promise<voi
         const connection = req.app.locals.db;
         const request = new sql.Request(connection);
 
-        const { name, cuisine, address, pricerange, openinghours, description, images } = req.body;
+        const { name, cuisine, address, pricerange, openinghours, description, images, num_tables } = req.body;
 
         const result = await request.query<Restaurant>(`
-            INSERT INTO Restaurants (name, cuisine, address, pricerange, openinghours, description, images)
+            INSERT INTO Restaurants (name, cuisine, address, pricerange, openinghours, description, images, num_tables)
             OUTPUT INSERTED.*
-            VALUES ('${name}', '${cuisine}', '${address}', ${pricerange}, '${openinghours}', '${description}', '${images}')
+            VALUES ('${name}', '${cuisine}', '${address}', ${pricerange}, '${openinghours}', '${description}', '${images}', '${num_tables}')
         `);
 
         const restaurant: Restaurant = result.recordset[0];
@@ -118,7 +118,7 @@ export const updateRestaurant = async (req: Request, res: Response): Promise<voi
         const connection = req.app.locals.db;
         const request = new sql.Request(connection);
         const { id } = req.params;
-        const { name, cuisine, address, pricerange, openinghours, description, images } = req.body;
+        const { name, cuisine, address, pricerange, openinghours, description, images, num_tables } = req.body;
         const updatedFields: string[] = [];
 
         if (name) updatedFields.push(`name = '${name}'`);
@@ -128,6 +128,7 @@ export const updateRestaurant = async (req: Request, res: Response): Promise<voi
         if (openinghours) updatedFields.push(`openinghours = '${openinghours}'`);
         if (description) updatedFields.push(`description = '${description}'`);
         if (images) updatedFields.push(`images = '${images}'`);
+        if (num_tables) updatedFields.push(`num_tables = ${num_tables}`);
 
         const setClause = updatedFields.join(', ');
 
@@ -139,7 +140,7 @@ export const updateRestaurant = async (req: Request, res: Response): Promise<voi
         `);
 
         const restaurant: Restaurant = result.recordset[0];
-        res.json(restaurant);
+        res.status(200).json(restaurant);
     } catch (error: any) {
         res.status(500).json({ message: 'Error updating restaurant', error: error.message });
     }
@@ -158,7 +159,7 @@ export const deleteRestaurant = async (req: Request, res: Response): Promise<voi
         `);
 
         const restaurant: Restaurant = result.recordset[0];
-        res.json(restaurant);
+        res.status(200).json({ message: 'Restaurant deleted' });
     } catch (error: any) {
         res.status(500).json({ message: 'Error deleting restaurant', error: error.message });
     }

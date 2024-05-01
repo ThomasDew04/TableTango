@@ -308,6 +308,17 @@ nav .nav-account {
 
 .filter-foods-container {
     gap: 30px;
+    animation: slideFromSide 1s forwards;
+}
+
+@keyframes slideFromSide {
+    0% {
+        transform: translateX(80px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+
 }
 
 .foodchoice {
@@ -435,6 +446,16 @@ nav .nav-account {
     width: 90%;
     height: fit-content;
     margin: 20px 0 0 40px;
+    animation: slide 1s forwards;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(50px);
+    }
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 /* -------------------------------END OF RESTAURANTS PAGE ------------------------------------------*/
@@ -623,6 +644,17 @@ nav .nav-account {
 .left-details {
     margin: 0 0 0 20px;
     width: 62%;
+    animation: slideFromLeft 1s forwards;
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-80px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+
 }
 
 .right-details {
@@ -704,6 +736,16 @@ nav .nav-account {
     padding: 30px 0;
     border: var(--dark-blue) 1px solid;
     border-radius: 15px;
+    animation: slide2 1s forwards;
+}
+
+@keyframes slide2 {
+    0% {
+        transform: translateY(80px);
+    }
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 .inner-form {
@@ -1087,6 +1129,7 @@ nav .nav-account {
     min-height: calc(100vh - 120px - 80px);
     height: fit-content;
     margin: 30px 94px 40px 94px;
+    animation: slide 1s forwards;
 }
 
 /* For bigger screens */
@@ -1136,6 +1179,7 @@ nav .nav-account {
     margin: 0 0 30px 0;
     color: var(--dark-blue);
     font-size: 1.8rem;
+    animation: slideFromLeft 1s forwards;
 }
 
 .reservation-card {
@@ -1145,6 +1189,7 @@ nav .nav-account {
     border-radius: 10px;
     margin: 0 0 30px 0;
     display: flex;
+    animation: slideFromSide 1s forwards;
 }
 
 .res-card-info {
@@ -1263,6 +1308,10 @@ footer {
     gap: 10px;
     color: var(--dark-blue);
     font-size: 1.2rem;
+}
+
+.foot-link:hover p {
+    text-decoration: underline var(--dark-blue) 1px;
 }
 
 .foot-links, .foot-pref {

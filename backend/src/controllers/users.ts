@@ -12,7 +12,7 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
         `);
 
         const users: User[] = result.recordset;
-        res.json(users);
+        res.status(200).json(users);
     } catch (error: any) {
         res.status(500).json({ message: 'Error retrieving users', error: error.message });
     }
@@ -35,7 +35,6 @@ export const getUserByName = async (req: Request, res: Response): Promise<void> 
         res.status(500).json({ message: 'Error retrieving user', error: error.message });
     }
 }
-
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -96,7 +95,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         `);
 
         const updatedUser: User = result.recordset[0];
-        res.json(updatedUser);
+        res.status(200).json(updatedUser);
     } catch (error: any) {
         res.status(500).json({ message: 'Error updating user', error: error.message });
     }

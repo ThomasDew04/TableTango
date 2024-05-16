@@ -6,6 +6,7 @@ import Login from "./login";
 import Register from "./register";
 import Account from "./account";
 import NotFound from "./not_found"
+import Friends from "./friends";
 
 export { 
     Restaurants, 
@@ -15,5 +16,6 @@ export {
     Login,
     Register,
     Account,
-    NotFound
+    NotFound,
+    Friends
 }

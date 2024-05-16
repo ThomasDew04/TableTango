@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-import { Restaurants, Restaurant, Reservations, Favorites, Login, Register, Account, NotFound } from "./pages/index"
+import { Restaurants, Restaurant, Reservations, Favorites, Login, Register, Account, NotFound, Friends } from "./pages/index"
 import { AuthProvider } from "./components/auth/AuthProvider"
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/friends" element={<Friends />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

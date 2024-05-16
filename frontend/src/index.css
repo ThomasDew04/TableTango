@@ -1361,3 +1361,11 @@ footer {
 .reservation-page, .favorites-page {
     position: relative;
 }
+
+/* ----------------------------- END OF NOT FOUND ----------------------------- */
+
+.friends-page {
+    position: relative;
+    min-height: 75vh;
+    height: fit-content;
+}
